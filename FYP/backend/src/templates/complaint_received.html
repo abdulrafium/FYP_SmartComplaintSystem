@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Received - {{trackingId}}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8fafc;
+        }
+        .container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+        .tracking-id {
+            background-color: #eff6ff;
+            border: 2px solid #2563eb;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .tracking-id h3 {
+            margin: 0;
+            color: #2563eb;
+            font-size: 18px;
+        }
+        .tracking-id p {
+            margin: 5px 0 0 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e40af;
+        }
+        .details {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .details h4 {
+            margin-top: 0;
+            color: #374151;
+            border-bottom: 1px solid #d1d5db;
+            padding-bottom: 10px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            font-weight: 600;
+            color: #4b5563;
+        }
+        .detail-value {
+            color: #111827;
+        }
+        .urgency {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .urgency.low { background-color: #d1fae5; color: #065f46; }
+        .urgency.medium { background-color: #fef3c7; color: #92400e; }
+        .urgency.high { background-color: #fee2e2; color: #991b1b; }
+        .urgency.critical { background-color: #fecaca; color: #7f1d1d; }
+        .description {
+            background-color: #f9fafb;
+            border-left: 4px solid #2563eb;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .cta-button:hover {
+            background-color: #1d4ed8;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .important-note {
+            background-color: #fef7cd;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .important-note h4 {
+            margin: 0 0 10px 0;
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">Sukkur IBA University</div>
+            <h2 style="margin: 0; color: #374151;">Complaint Received</h2>
+        </div>
+
+        <p>Dear <strong>{{complainantName}}</strong>,</p>
+        
+        <p>Thank you for submitting your complaint. We have received your request and it has been logged in our system for processing.</p>
+
+        <div class="tracking-id">
+            <h3>Your Tracking ID</h3>
+            <p>{{trackingId}}</p>
+        </div>
+
+        <div class="important-note">
+            <h4>📌 Important</h4>
+            <p>Please save this tracking ID for future reference. You can use it to check the status of your complaint at any time.</p>
+        </div>
+
+        <div class="details">
+            <h4>Complaint Details</h4>
+            <div class="detail-row">
+                <span class="detail-label">Submitted On:</span>
+                <span class="detail-value">{{submissionDate}}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Assigned Department:</span>
+                <span class="detail-value">{{department}}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Assigned Role:</span>
+                <span class="detail-value">{{role}}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Priority Level:</span>
+                <span class="detail-value">
+                    <span class="urgency {{urgency}}">{{urgency}}</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="description">
+            <h4 style="margin-top: 0; color: #374151;">Your Complaint:</h4>
+            <p style="margin-bottom: 0;">{{description}}</p>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="{{trackingUrl}}" class="cta-button">Track Your Complaint</a>
+        </div>
+
+        <div style="background-color: #f0f9ff; border-radius: 8px; padding: 20px; margin: 20px 0;">
+            <h4 style="margin-top: 0; color: #0369a1;">What Happens Next?</h4>
+            <ul style="margin: 0; padding-left: 20px; color: #374151;">
+                <li>Your complaint has been automatically assigned to the appropriate department</li>
+                <li>The assigned team will review your complaint within 24-48 hours</li>
+                <li>You will receive email updates as your complaint progresses</li>
+                <li>You can track the status anytime using your tracking ID</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p><strong>Sukkur IBA University</strong><br>
+            Smart Complaint Management System<br>
+            Email: support@iba-suk.edu.pk</p>
+            
+            <p style="margin-top: 15px; font-size: 12px;">
+                This is an automated email. Please do not reply to this message.<br>
+                If you need immediate assistance, please contact our support team directly.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
