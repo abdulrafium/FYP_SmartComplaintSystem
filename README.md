@@ -122,3 +122,90 @@ The current frontend calls backend endpoints such as:
 - Integrate and validate AI classification/routing pipeline end-to-end.
 - Add automated tests (unit + integration + UI flows).
 - Prepare deployment-ready environment and operations documentation.
+
+# Module 2
+
+Module 2 focuses on backend implementation, API workflows, role-based access control, and AI-assisted complaint routing.
+
+## Progress Status (April 2026)
+
+The backend service has been implemented and pushed with core complaint lifecycle APIs.
+
+### Completed So Far
+
+- Node.js + Express backend in `FYP/backend` with MongoDB (Mongoose) integration.
+- Security and platform middleware:
+	- Helmet, CORS, request rate limiting, and body size controls.
+	- JWT authentication middleware and role-based permission (RBAC) middleware.
+- Complaint lifecycle APIs:
+	- Public complaint submission with details
+	- Email validation and university email domain checks (@iba-suk.edu.pk).
+	- Tracking endpoint by complaint tracking ID.
+	- Role-user complaint inbox and complaint status update workflow.
+- Notification and verification:
+	- Email verification endpoint using AbstractAPI.
+	- SMTP email notification service and HTML complaint confirmation template.
+- Seed and test scaffolding:
+	- Database seed scripts for departments, roles, users, and sample complaints.
+	- Jest + Supertest backend test files for auth and complaint routes.
+
+## Backend Project Structure (Current)
+
+- `FYP/backend/src` (API source)
+- `FYP/backend/src/routes` (auth, complaints, departments, admin, verify-email, track)
+- `FYP/backend/src/models` (Complaint, Department, Role, User)
+- `FYP/backend/src/middleware` (auth, RBAC)
+- `FYP/backend/src/templates` (email templates)
+- `FYP/backend/seed` (database initialization and sample data)
+- `FYP/backend/tests` (API test files)
+
+## How To Run The Backend
+
+1. Open terminal in `FYP/backend`
+2. Install dependencies:
+
+	 npm install
+
+3. Add required environment variables in `FYP/.env`
+4. Start development server:
+
+	 npm run dev
+
+5. Backend runs at:
+
+	 http://localhost:3000
+
+Optional commands:
+
+- `npm run seed`
+- `npm test`
+
+## Backend Environment Variables
+
+- `PORT`
+- `MONGODB_URI`
+- `JWT_SECRET`
+- `FRONTEND_URL`
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_USER`
+- `SMTP_PASS`
+- `SMTP_FROM`
+- `AI_SERVICE_URL`
+- `ABSTRACTAPI_KEY`
+
+## Implemented Backend API Base Paths
+
+- `/api/auth`
+- `/api/complaints`
+- `/api/departments`
+- `/api/admin`
+- `/api/verify-email`
+- `/health`
+
+## Known Gaps / In Progress (Module 2)
+
+- Full end-to-end alignment between frontend route contracts and backend payloads is still being finalized.
+- AI model training, evaluation, and routing/prompt tuning are currently in progress.
+- Some backend test files reflect older payload assumptions and need schema-aligned updates.
+- AI service deployment readiness and operational monitoring are in progress.
